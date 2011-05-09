@@ -100,7 +100,7 @@ tofus: ${OBJS}
 
 .c.o:
 	@ echo -e "[${CCS}] $@"
-	 ${CC} -c $< -o $@ ${CFLAGS} ${INCLUDE_PATH} ${DEFINES}
+	@ ${CC} -c $< -o $@ ${CFLAGS} ${INCLUDE_PATH} ${DEFINES}
 
 .m.o:
 	@ echo "[${CCS}] $@"
