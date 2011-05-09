@@ -374,5 +374,5 @@ void setup(u32 magic, multiboot_info* mbi) {
 
 	printDebug("%x\n", (u32*)heap_alloc(1));
 	printCPUID();
-	/**/
+	*/
 }

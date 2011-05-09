@@ -65,6 +65,6 @@ void module_elf_printInfo(void* hdr) {
 void module_elf_findText(void* hdr) {
 	Elf32_Header* elf_h = (Elf32_Header*)hdr;
 	printDebug("\n\t_start is at 0x%x\n", elf_h->e_entry);
-	int (*moduleStart)(void) = elf_h->e_entry;
+	int (*moduleStart)(void) = (void *)elf_h->e_entry;
 	printDebug("\n%d\n", moduleStart());
 }

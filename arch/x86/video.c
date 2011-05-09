@@ -180,15 +180,15 @@ void printDebug(const char *format, ...) {
 	char **arg = (char **) &format;
 	int c;
 	char buf[40];
-	
+
 	arg++;
-	
+
 	while ((c = *format++) != 0) {
 		if (c != '%')
 			putchar (c);
 		else {
 			char *p;
-			
+
 			c = *format++;
 			switch (c) {
 			case 'd':
@@ -199,17 +199,17 @@ void printDebug(const char *format, ...) {
 				p = buf;
 				goto string;
 				break;
-				
+
 			case 's':
 				p = *arg++;
-				if (! p)
+				if (!p)
 					p = "(null)";
-				
+
 			string:
 				while (*p)
 					putchar (*p++);
 				break;
-				
+
 			default:
 				putchar (*((int *) arg++));
 				break;
