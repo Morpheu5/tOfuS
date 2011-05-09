@@ -25,7 +25,7 @@ CCS=${lgreen}CC${normal}
 ASS=${lcyan}AS${normal}
 LDS=${white}LD${normal}
 
-CC=`which ccache` gcc
+CC=gcc
 ASM=nasm
 
 INCLUDE_PATH=-Iinclude/ -Iinclude/tofus/arch/${BUILDARCH}/ -Iinclude/libc/
