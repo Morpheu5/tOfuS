@@ -2,3 +2,6 @@
 .cproject
 .settings
 .buildpath
+*.o
+*.a
+tofus
