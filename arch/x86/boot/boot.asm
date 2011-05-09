@@ -1,7 +1,7 @@
 [bits 32]
 [section .text]
-%include "arch/i386/boot/multiboot.asm"
-%include "tofus/arch/i386/defines.asm"
+%include "arch/x86/boot/multiboot.asm"
+%include "tofus/arch/x86/defines.asm"
 
 extern EXT_C(setup)
 extern gdtr
