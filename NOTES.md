@@ -1,8 +1,3 @@
-                          -=[ THE BIG WARNING ]=-
-Make sure you follow the procedures described inside the utils/ directory in
-order to have everything you need to build tOfuS
-                      -=[ MAY GOD SHAVE THE QUEEN ]=-
-
 Arch dependent headers should be referred with just their name (i.e., types.h
 rather than tofus/arch/i386/types.h). This is because the path is correctly set
 by the Makefile and it allows to quickly change the target arch.
