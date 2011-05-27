@@ -51,8 +51,10 @@ ahead:
 halt_loop:
 	jmp		$
 
-global EXT_C(gdt_flush)
-EXT_C(gdt_flush):
+;global EXT_C(gdt_flush)
+;EXT_C(gdt_flush):
+global gdt_flush
+gdt_flush:
 	lgdt	[gdtr]
 	mov		ax, 0x10
 	mov		ds, ax

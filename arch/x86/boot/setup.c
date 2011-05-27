@@ -23,13 +23,16 @@ void init_paging(void) {
 		lowerPageTable[i].present = 1;
 		lowerPageTable[i].writable = 1;
 		lowerPageTable[i].address = i;
-		*((u32*) &kernelPageDir[i]) = 0;
 	}
 	/* Make the video memory uncached. */
 	for(i = 0; i < 0x18; i++) {
 		lowerPageTable[0xa0 + i].cachedisable = 1;
 	}
 
+	/* Set to zero the kernel's Page Directory. */
+	for(i = 0; i < 1024; i++) {
+		*((u32*) &kernelPageDir[i]) = 0;
+	}
 	/* Insert 0-4MB interval in the main directory of page tables. */
 	kernelPageDir[0].present = 1;
 	kernelPageDir[0].writable = 1;
@@ -45,6 +48,7 @@ void init_paging(void) {
 	writeCR0(readCR0() | 0x80000000);
 }
 
+/* Initializes a very flat GDT. */
 void init_gdt(void) {
 	gdt[0] = nullSegDesc();
 	gdt[1] = initSegDesc(0x0, 0xfffff, SEGT_EXECUTE | CS_READ, DESCT_CODE, DPL0, 1, 0, 1, 1);
@@ -101,9 +105,9 @@ void init_idt(void) {
 	// int 0x21 :: keyboard
 	installGate(0x21, idt, (u32)b_kbd, 0x8, SS_32BIT_INTGATE, 0);
 
-	// . load the IDT into idtr register
-		// this is odd, defined in intutils.asm
-		// maybe there's a way to do this better
+	// load the IDT into idtr register
+	// this is odd, defined in intutils.asm
+	// maybe there's a way to do this better
 	loadIDT(256*sizeof(gatedesc), idt);
 	unmaskIRQ(ALL);
 	asm __volatile__ ("sti");
