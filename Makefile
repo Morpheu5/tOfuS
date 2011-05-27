@@ -35,7 +35,7 @@ CFLAGS=-ffreestanding -nostdlib -fno-builtin -nostdinc -static -Wall ${CUSTOMCFL
 # without -s for debugging
 LDFLAGS=-nostdlib -Wl,-N -Wl,-e,start -Wall -Wl,-X -Wl,-T,config/ldscript
 
-BUILDTIMESTAMP = `date -R`
+BUILDTIMESTAMP = `date +%Y-%m-%d\ %R\ %z`
 
 DEFINES=${DEBUGD} -D__ELF__ -DBUILDTIMESTAMP="\"${BUILDTIMESTAMP}\"" ${DEFINEARCH} ${MEMORYMAP}
 
