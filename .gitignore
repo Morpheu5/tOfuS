@@ -4,5 +4,5 @@
 .buildpath
 *.o
 *.a
-./tofus
+/tofus
 TODO
