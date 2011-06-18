@@ -118,28 +118,30 @@ void kprintf (const char *format, ...) {
 			
 			c = *format++;
 			switch (c) {
-			case 'd':
-			case 'u':
-			case 'X':
-			case 'x':
-				itoa (buf, c, *((unsigned long int *) arg++));
-				p = buf;
-				goto string;
-				break;
-				
-			case 's':
-				p = *arg++;
-				if (! p)
-					p = "(null)";
-				
-			string:
-				while (*p)
-					putchar (*p++);
-				break;
-				
-			default:
-				putchar (*((int *) arg++));
-				break;
+				case 'd':
+				case 'u':
+				case 'X':
+				case 'x': {
+					unsigned long int *argp = (unsigned long int *)arg++;
+					itoa (buf, c, *argp);
+					p = buf;
+					goto string;
+					break;
+				}
+				case 's': {
+					p = *arg++;
+					if (! p)
+						p = "(null)";
+
+				string:
+					while (*p)
+						putchar (*p++);
+					break;
+				}
+				default: {
+					putchar (*((int *) arg++));
+					break;
+				}
 			}
 		}
 	}
@@ -191,28 +193,30 @@ void printDebug(const char *format, ...) {
 
 			c = *format++;
 			switch (c) {
-			case 'd':
-			case 'u':
-			case 'X':
-			case 'x':
-				itoa (buf, c, *((unsigned long int *) arg++));
-				p = buf;
-				goto string;
-				break;
+				case 'd':
+				case 'u':
+				case 'X':
+				case 'x': {
+					unsigned long int *argp = (unsigned long int *)arg++;
+					itoa (buf, c, *argp);
+					p = buf;
+					goto string;
+					break;
+				}
+				case 's': {
+					p = *arg++;
+					if (! p)
+						p = "(null)";
 
-			case 's':
-				p = *arg++;
-				if (!p)
-					p = "(null)";
-
-			string:
-				while (*p)
-					putchar (*p++);
-				break;
-
-			default:
-				putchar (*((int *) arg++));
-				break;
+				string:
+					while (*p)
+						putchar (*p++);
+					break;
+				}
+				default: {
+					putchar (*((int *) arg++));
+					break;
+				}
 			}
 		}
 	}
