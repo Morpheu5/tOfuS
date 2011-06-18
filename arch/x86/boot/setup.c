@@ -299,7 +299,7 @@ void setup(u32 magic, multiboot_info* mbi) {
 
 		printDebug("\nMemory Map :: base: 0x%x, size: 0x%x\n", mmap_base, mmap_size);
 
-		mmap = (multiboot_memoryMap*) (mbi->mmap_addr);
+		mmap = (multiboot_memoryMap*) mbi->mmap_addr;
 
 		while((mmap < (multiboot_memoryMap*) mmap_base + mmap_size)) {
 			base = mmap->base_addr_low;

@@ -16,9 +16,9 @@
 */
 
 /* Must be called with lock(&s) */
-#define lock(sem)	asm volatile (	"loop:\n\t"	\
+#define lock(sem)	asm volatile (	"0:\n\t"	\
 					"lock bts %1,%0\n\t"		\
-					"jc loop\n\t"				\
+					"jc 0b\n\t"				\
 					: "=m" (*(u32*)sem->status)	\
 					: "n" (LOCK)				\
 					: "cc"						\
