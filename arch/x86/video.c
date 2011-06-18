@@ -1,4 +1,5 @@
 #include <video.h>
+#include <string.h>
 
 
 static u16 xpos = 0;
@@ -122,7 +123,8 @@ void kprintf (const char *format, ...) {
 				case 'u':
 				case 'X':
 				case 'x': {
-					unsigned long int *argp = (unsigned long int *)arg++;
+					u32 *argp = 0;
+					memcpy(argp, arg++, sizeof(u32));
 					itoa (buf, c, *argp);
 					p = buf;
 					goto string;
@@ -139,7 +141,9 @@ void kprintf (const char *format, ...) {
 					break;
 				}
 				default: {
-					putchar (*((int *) arg++));
+					char *argp = 0;
+					memcpy(argp, arg++, sizeof(char));
+					putchar (*argp);
 					break;
 				}
 			}
@@ -197,7 +201,8 @@ void printDebug(const char *format, ...) {
 				case 'u':
 				case 'X':
 				case 'x': {
-					unsigned long int *argp = (unsigned long int *)arg++;
+					u32 *argp = 0;
+					memcpy(argp, arg++, sizeof(u32));
 					itoa (buf, c, *argp);
 					p = buf;
 					goto string;
@@ -214,7 +219,9 @@ void printDebug(const char *format, ...) {
 					break;
 				}
 				default: {
-					putchar (*((int *) arg++));
+					char *argp = 0;
+					memcpy(argp, arg++, sizeof(char));
+					putchar (*argp);
 					break;
 				}
 			}
