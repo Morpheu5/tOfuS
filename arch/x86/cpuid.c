@@ -6,12 +6,12 @@ void cpuid() {
 	gpr regs;
 	u32 maxParm;
 	asm volatile ( \
-			"mov %%eax, 0\n\t" \
+			"movl 0, %%eax\n\t" \
 			"cpuid\n\t" \
-			"mov %0, %%eax\n\t" \
-			"mov %1, %%ebx\n\t" \
-			"mov %2, %%ecx\n\t" \
-			"mov %3, %%edx\n\t" \
+			"movl %%eax, %0\n\t" \
+			"movl %%ebx, %1\n\t" \
+			"movl %%ecx, %2\n\t" \
+			"movl %%edx, %3\n\t" \
 			: "=m"(maxParm), "=m"(regs.ebx), "=m"(regs.ecx), "=m"(regs.edx));
 
 	u32* vp = (u32*)cpuInfo.vendor;
@@ -22,12 +22,12 @@ void cpuid() {
 
 	if(1 <= maxParm) {
 		asm volatile ( \
-				"mov %%eax, 1\n\t" \
+				"movl 1, %%eax\n\t" \
 				"cpuid\n\t" \
-				"mov %0, %%eax\n\t" \
-				"mov %1, %%ebx\n\t" \
-				"mov %2, %%ecx\n\t" \
-				"mov %3, %%edx\n\t" \
+				"movl %%eax, %0\n\t" \
+				"movl %%ebx, %1\n\t" \
+				"movl %%ecx, %2\n\t" \
+				"movl %%edx, %3\n\t" \
 				: "=m"(regs.eax), "=m"(regs.ebx), "=m"(regs.ecx), "=m"(regs.edx));
 	}
 
@@ -40,12 +40,12 @@ void cpuid() {
 
 	if(2 <= maxParm) {
 		asm volatile ( \
-				"mov %%eax, 2\n\t" \
+				"movl 2, %%eax\n\t" \
 				"cpuid\n\t" \
-				"mov %0, %%eax\n\t" \
-				"mov %1, %%ebx\n\t" \
-				"mov %2, %%ecx\n\t" \
-				"mov %3, %%edx\n\t" \
+				"movl %%eax, %0\n\t" \
+				"movl %%ebx, %1\n\t" \
+				"movl %%ecx, %2\n\t" \
+				"movl %%edx, %3\n\t" \
 				: "=m"(regs.eax), "=m"(regs.ebx), "=m"(regs.ecx), "=m"(regs.edx));
 	}
 

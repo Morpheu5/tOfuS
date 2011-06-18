@@ -1,9 +1,0 @@
-# This is a automatically generated file
-# DON'T TOUCH
-
-BUILDARCH = x86
-DEFINEARCH = -D__ARCH_${BUILDARCH}__
-MEMORYMAP = -DKERNEL_BASE=0xfc000000 -DKERNEL_SIZE=0x04000000 -DK_HEAP_BASE=0xf0000000 -DK_HEAP_SIZE=0x0c000000
-DEBUGD = -D__DEBUG_OUT__ -g
-
-CUSTOMCFLAGS = -O2 -masm=intel -march=pentium-m

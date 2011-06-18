@@ -6,3 +6,4 @@
 *.a
 /tofus
 TODO
+/config

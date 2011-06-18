@@ -1,7 +1,5 @@
 /* ports.c
  * 
- * please note: intel syntax
- * 
  * Routines for I/O memory mapped devices
  * 
  * naming convention: <direction><size>
@@ -12,7 +10,7 @@
 #include <ports.h>
 
 void outb(u16 port, u8 value) {
-	asm("outb %1, %0"
+	asm("outb %0, %1"
 	    :
 	    :"a"(value), // %0
 	    "Nd"(port)   // %1
@@ -20,7 +18,7 @@ void outb(u16 port, u8 value) {
 }
 
 void outw(u16 port, u16 value) {
-	asm("outw %1, %0"
+	asm("outw %0, %1"
 	    :
 	    :"a"(value), // %0
 	    "Nd"(port)   // %1
@@ -29,7 +27,7 @@ void outw(u16 port, u16 value) {
 
 u8 inb(u16 port) {
 	u8 value;
-	asm("inb %0, %1"
+	asm("inb %1, %0"
 	    :"=a"(value) // %0
 	    :"Nd"(port)  // %1
 		);
@@ -38,7 +36,7 @@ u8 inb(u16 port) {
 
 u16 inw(u16 port) {
 	u16 value;
-	asm("inw %0, %1"
+	asm("inw %1, %0"
 	    :"=a"(value) // %0
 	    :"Nd"(port)  // %1
 		);

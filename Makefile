@@ -63,7 +63,7 @@ OBJS=\
 	kernel/memory/heap_alloc.o\
 	kernel/drivers/timer.o\
 	kernel/drivers/keyboard.o
-	
+
 HDRS=\
 	include/tofus/arch/i386/defines.asm \
 	include/libc/string.h \

@@ -2,7 +2,7 @@
 #define COMMON_H_
 
 #ifndef __BITS__
-	#ifdef i386
+	#ifdef x86
 		#define __BITS__ 32
 	#endif
 	#ifdef x86_64

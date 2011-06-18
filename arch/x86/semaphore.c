@@ -15,21 +15,19 @@
 	kprintf("status: %x\nvalue: %x\n", s->status, s->value);
 */
 
-/*
- * Must be called with lock(&s)
- */
-
-#define lock(sem)	asm volatile (	"0:\n\t"				\
-					"lock bts %0,%1\n\t"		\
-					"jc 0b\n\t"			\
+/* Must be called with lock(&s) */
+#define lock(sem)	asm volatile (	"loop:\n\t"	\
+					"lock bts %1,%0\n\t"		\
+					"jc loop\n\t"				\
 					: "=m" (*(u32*)sem->status)	\
 					: "n" (LOCK)				\
 					: "cc"						\
 				);
 
-#define unlock(sem)	asm volatile (	"lock and %0,%1\n\t"		\
-					: "=m" (*(u32*)sem->status)	\
-					: "n" (UNLOCK)			\
+/* Must be called as unlock(&s) */
+#define unlock(sem)	asm volatile (	"lock and %1,%0\n\t"	\
+					: "=m" (*(u32*)sem->status)				\
+					: "n" (UNLOCK)							\
 				);
 
 void wait(semaphore* sem) {
