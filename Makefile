@@ -25,7 +25,7 @@ CCS=${lgreen}CC${normal}
 ASS=${lcyan}AS${normal}
 LDS=${white}LD${normal}
 
-CC=gcc
+CC=i686-pc-linux-gnu-gcc
 ASM=nasm
 
 INCLUDE_PATH=-Iinclude/ -Iinclude/tofus/arch/${BUILDARCH}/ -Iinclude/libc/
@@ -33,7 +33,7 @@ ASMFLAGS=
 CFLAGS=-ffreestanding -nostdlib -fno-builtin -nostdinc -static -Wall ${CUSTOMCFLAGS}
 
 # without -s for debugging
-LDFLAGS=-nostdlib -Wl,-N -Wl,-e,start -Wall -Wl,-X -Wl,-T,config/ldscript
+LDFLAGS=-nostdlib -Wl,-N -Wl,-e,start -Wall -Wl,-X -Wl,-T,config/ldscript -Wl,-Map,kernel.map
 
 BUILDTIMESTAMP = `date +%Y-%m-%d\ %R\ %z`
 
