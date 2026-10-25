@@ -25,7 +25,7 @@ CCS=${lgreen}CC${normal}
 ASS=${lcyan}AS${normal}
 LDS=${white}LD${normal}
 
-CC=i686-pc-linux-gnu-gcc
+CC=clang # i686-pc-linux-gnu-gcc
 ASM=nasm
 
 INCLUDE_PATH=-Iinclude/ -Iinclude/tofus/arch/${BUILDARCH}/ -Iinclude/libc/
@@ -65,20 +65,20 @@ OBJS=\
 	kernel/drivers/keyboard.o
 
 HDRS=\
-	include/tofus/arch/i386/defines.asm \
+	include/tofus/arch/${BUILDARCH}/defines.asm \
 	include/libc/string.h \
-	include/tofus/arch \/i386/keyboard.h \
-	include/tofus/arch \/i386/video.h \
-	include/tofus/arch \/i386/setup.h \
-	include/tofus/arch \/i386/pm.h \
-	include/tofus/arch \/i386/elf.h \
-	include/tofus/arch \/i386/idt.h \
-	include/tofus/arch \/i386/types.h \
-	include/tofus/arch \/i386/isr.h \
-	include/tofus/arch \/i386/ports.h \
-	include/tofus/arch \/i386/pic.h \
-	include/tofus/arch \/i386/mm.h \
-	include/tofus/arch \/i386/cpuid.h \
+	include/tofus/arch/${BUILDARCH}/keyboard.h \
+	include/tofus/arch/${BUILDARCH}/video.h \
+	include/tofus/arch/${BUILDARCH}/setup.h \
+	include/tofus/arch/${BUILDARCH}/pm.h \
+	include/tofus/arch/${BUILDARCH}/elf.h \
+	include/tofus/arch/${BUILDARCH}/idt.h \
+	include/tofus/arch/${BUILDARCH}/types.h \
+	include/tofus/arch/${BUILDARCH}/isr.h \
+	include/tofus/arch/${BUILDARCH}/ports.h \
+	include/tofus/arch/${BUILDARCH}/pic.h \
+	include/tofus/arch/${BUILDARCH}/mm.h \
+	include/tofus/arch/${BUILDARCH}/cpuid.h \
 	include/tofus/boot/module.h \
 	include/tofus/semaph \ore.h \
 	include/tofus/multiboot.h \
